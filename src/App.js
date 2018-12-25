@@ -38,6 +38,12 @@ class App extends Component {
       ]
     })
   }
+  deletePersonHandler=(personIndex)=>{
+    //const persons=this.state.persons;  //Refernce of array is store ,Do not modify state of person directly
+    const persons=this.state.persons.slice(); //Better is to create new array  
+    persons.splice(personIndex,1);    
+    this.setState({persons:persons});
+  }
   toggleChangeHandler=()=>{
     this.setState({
       toggleValue:true
@@ -58,8 +64,12 @@ class App extends Component {
     {
       persons=(
         <div>
-          
-        <Person 
+        {this.state.persons.map((person,index)=>{
+          return (
+            <Person name={person.name} age={person.age} click={this.deletePersonHandler.bind(this,index)}/>
+          )
+        })}  
+        {/* <Person 
         name={this.state.persons[0].name} 
         age={this.state.persons[0].age} 
         click={this.switchNameHandler.bind(this,'Ross')}
@@ -71,7 +81,7 @@ class App extends Component {
         >My Hobbies are:Running</Person>
         <Person 
         name={this.state.persons[2].name} 
-        age={this.state.persons[2].age} />
+        age={this.state.persons[2].age} /> */}
         
         
         </div>

@@ -51,7 +51,8 @@ class App extends Component {
   }
   render() {
     const style={
-      backgroudColor:'white',
+      backgroundColor:'green',
+      color:'white',
       font:'inherit',
       border:'1px solid blue',
       padding:'8px',
@@ -73,8 +74,12 @@ class App extends Component {
             click={this.deletePersonHandler.bind(this,index)}
             changed={(event)=>this.nameChangeHandler(event,person.id)}
             key={person.id}/>
+            
           )
-        })}  
+        
+        })
+          
+        }  
         {/* <Person 
         name={this.state.persons[0].name} 
         age={this.state.persons[0].age} 
@@ -92,6 +97,7 @@ class App extends Component {
         
         </div>
       )
+      style.backgroundColor='red';
     }
     return (
       

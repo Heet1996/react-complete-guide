@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.module.scss';
 import Person from './Person/Person';
 class App extends Component {
   state={
@@ -49,17 +49,9 @@ class App extends Component {
     })
   }
   render() {
-    const style={
-      backgroundColor:'green',
-      color:'white',
-      font:'inherit',
-      border:'1px solid blue',
-      padding:'8px',
-      cursor:'pointer',
-      margin:'16px 8px',
-     
-    }
+ 
     let persons=null;
+    let btnClass=[classes.App__button];
     if(this.state.toggleValue)
     {
       persons=(
@@ -96,30 +88,31 @@ class App extends Component {
         
         </div>
       )
-      style.backgroundColor='red';
+      btnClass.push(classes.App__button__Red);
      
     }
-    const classes=[];
+    const assignedClasses=[];
+    console.log(classes);
     if(this.state.persons.length<=1)
     {
-      classes.push('bold');
+      assignedClasses.push(classes.bold);
+      
     }
     if(this.state.persons.length<=2)
     {
-      classes.push('red');
+      assignedClasses.push(classes.red);
     }
     return (
       
-      <div className="App">
-        <p className={classes.join(' ')}>Hi,there I am really working </p>
+      <div className={classes.App}>
+        <p className={assignedClasses.join(' ')}>Hi,there I am really working </p>
         <button 
         onClick={()=>this.switchNameHandler('rachel')}
-        style={style}
         key="key1" 
         >Switch Name</button>
         <button 
         onClick={this.toggleChangeHandler}
-        style={style}
+        className={btnClass.join(' ')}
         key="key2"
         >Toggle it</button>
        {/* Alternate way to toogle */}
